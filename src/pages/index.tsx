@@ -1,73 +1,233 @@
-import Head from 'next/head';
+import Metatags from '@/components/Metatags';
+import useDarkMode from '@/hooks/useDarkMode';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useRef } from 'react';
 
-import styles from '@/styles/Home.module.css';
+import styles from '../styles/LandingPage.module.scss';
 
-export default function Home() {
+export default function LandingPage() {
+  const [isDarkMode, toggleDarkMode] = useDarkMode();
+
+  const tags = [`3D Artist`, `Game Designer`, `Animator`];
+
+  const name = `tranthao`;
+
+  const links = [
+    {
+      name: `Instagram`,
+      background_image: `https://res.cloudinary.com/dcjxcptdt/image/upload/v1663592612/tranthao/ffaf7sptlur1cryxia0r.png`,
+      src: `https://www.instagram.com/${name}.art/`,
+    },
+    {
+      name: `Twitter`,
+      background_image: `https://res.cloudinary.com/dcjxcptdt/image/upload/v1663592655/tranthao/m7unmioe0gdfu8cz36vj.png`,
+      src: `https://twitter.com/${name}art`,
+    },
+    {
+      name: `Dribble`,
+      background_image: `https://res.cloudinary.com/dcjxcptdt/image/upload/v1663592701/tranthao/lto7j5jn3baiu2dfspgz.jpg`,
+      src: `https://dribbble.com/${name}`,
+    },
+    {
+      name: `Behance`,
+      background_image: `https://res.cloudinary.com/dcjxcptdt/image/upload/v1663592740/tranthao/wn5ntmpoyvnabzajclxi.png`,
+      src: `https://www.behance.net/${name}art`,
+    },
+    {
+      name: `Foundation`,
+      background_image: `https://res.cloudinary.com/dcjxcptdt/image/upload/v1663592774/tranthao/mtw8r2umtwlzhw3siuck.png`,
+      src: `https://foundation.app/@${name}`,
+    },
+  ];
+
+  let lastItem;
+  if (links.length % 2 === 1) {
+    lastItem = links[links.length - 1];
+  }
+
+  const profileScreenRef = useRef(null);
+
+  useEffect(() => {
+    const profileScreen = profileScreenRef.current as any;
+    let timer: any;
+    if (profileScreen) {
+      timer = setTimeout(() => {
+        profileScreen.classList.remove(`hidden`);
+        profileScreen.classList.add(`fade-in-animation`);
+      }, 1500);
+    }
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>TypeScript starter for Next.js</title>
-        <meta
-          name="description"
-          content="TypeScript starter for Next.js that includes all you need to build amazing apps"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <>
+      <Metatags
+        title={`Landing Page`}
+        description={`Public artworks profile`}
+      />
+      <div
+        className="min-h-screen bg-fixed bg-no-repeat bg-cover bg-top"
+        id={styles[`landing-page-background`]}
+        style={{ fontSize: `20px` }}
+      >
+        <div ref={profileScreenRef} className="hidden">
+          <div className="sticky top-0 px-4 py-2 mb-10"></div>
+          {/* toggle mode start */}
+          <div className="card-container">
+            <div className="h-[60px] flex flex-row relative p-2 sm:p-0">
+              <div className="absolute top-0 z-[2] flex flex-col rounded-full gap-6 px-3 py-3 bg-skin-baseProfilePrimary"></div>
+            </div>
+          </div>
+          {/* toggle mode end */}
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+          {/* desc start */}
+          <div className="card-container">
+            <div className="rounded-xl overflow-hidden">
+              {/* bg start */}
+              <div className="grid grid-cols-4">
+                <div className="grid row-span-1 col-span-4 bg-skin-baseProfilePrimary">
+                  <div className="aspect-w-4 aspect-h-1">
+                    <Image
+                      className="object-cover"
+                      src="https://res.cloudinary.com/dcjxcptdt/image/upload/v1663565698/tranthao/txnpxdgfm6cbdvz0gfhp.png"
+                      placeholder="blur"
+                      blurDataURL="true"
+                      alt="background cover"
+                      width="900px"
+                      height="300px"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="w-full text-skin-baseProfilePrimary bg-skin-baseProfilePrimary">
+                <div className="relative">
+                  <div className="flex justify-between  items-center w-full h-[110px]  absolute -top-[55px] px-4">
+                    <div className="flex items-center gap-2">
+                      <div className="w-[80px] h-[80px] sm:w-[110px] sm:h-[110px] bg-skin-baseProfilePrimary rounded-full flex justify-center items-center p-2">
+                        <Image
+                          className="rounded-full"
+                          src="https://res.cloudinary.com/dcjxcptdt/image/upload/v1663565697/tranthao/udbfxehjbqacrtauxblz.jpg"
+                          alt="avatar"
+                          width="300px"
+                          height="300px"
+                        />
+                      </div>
+                      <div className="hidden sm:flex  px-4 h-[40px] rounded-full items-center bg-skin-baseProfilePrimary text-skin-baseProfilePrimary shadow-md">
+                        <span className="text-lg sm:text-2lg undefined">
+                          3d Visual Designer at{` `}
+                          <a
+                            href="https://ui8.net/"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="txt-hover"
+                          >
+                            @ui8.net
+                          </a>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-        <p className={styles.description}>
-          Get started by editing{` `}
-          <code className={styles.code}>src/pages/index.tsx</code>
-        </p>
+                <div className="px-4 pt-[60px] sm:pt-[80px] pb-8">
+                  <h3 className="text-xl sm:text-2xl md:text-6xl mb-4 font-normal">
+                    <b>Tran Thao</b>
+                  </h3>
+                  <p className="text-lg sm:text-2lg md:text-2xl mb-4">
+                    I love to create graphics and cute things full of joy and
+                    bring them to life with animation!
+                  </p>
+                  <div className="flex flex-wrap gap-2 items-center w-full">
+                    {tags.map((tag, index) => (
+                      <div
+                        key={index}
+                        className="px-4 h-[40px] rounded-full flex items-center bg-skin-baseProfileSecondary text-skin-baseProfileSecondary hover:scale-105 transition-all ease-in-out duration-500 cursor-pointer"
+                      >
+                        <span className="text-md sm:text-2lg">{tag}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* desc end */}
+          {/* work start */}
+          <div className="card-container">
+            <div className="p-2 sm:px-0 sm:py-4">
+              <div className="grid grid-cols-2 gap-2">
+                {links.slice(0, -1).map((link, index) => (
+                  <Link key={index} href={link.src}>
+                    <a target="_blank" rel="noreferrer">
+                      <div
+                        className="grid row-span-1 col-span-2 transform transition duration-300 hover:scale-[102%] hover:animate-none cursor-pointer overflow-hidden rounded-xl animate-none txt-hover"
+                        style={{ backgroundColor: `rgb(255, 255, 255)` }}
+                      >
+                        <div className="aspect-w-2 aspect-h-1 relative">
+                          <Image
+                            className="object-cover"
+                            src={link.background_image}
+                            alt="background cover"
+                            layout="fill"
+                          />
+                          <div className="flex w-full items-end absolute txt-hover">
+                            <div className="p-2 sm:p-4">
+                              <p className="text-2xl">
+                                <b className="hidden sm:block">{link.name}</b>
+                                <small className="block sm:hidden">
+                                  <b>{link.name}</b>
+                                </small>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </Link>
+                ))}
+              </div>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=typescript-nextjs-starter"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+              {lastItem && (
+                <div className="grid grid-cols-1 mt-2">
+                  <Link href={lastItem.src}>
+                    <a target="_blank" rel="noreferrer">
+                      <div
+                        className="grid row-span-1 col-span-4 transform transition duration-300 hover:scale-[102%] hover:animate-none cursor-pointer overflow-hidden rounded-xl animate-none txt-hover"
+                        style={{ backgroundColor: `rgb(255, 255, 255)` }}
+                      >
+                        <div className="aspect-w-4 aspect-h-1 relative pt-2">
+                          <Image
+                            className="object-cover"
+                            src={lastItem.background_image}
+                            alt="background cover"
+                            width={800}
+                            height={200}
+                          />
+                          <div className="flex w-full items-end absolute top-0 txt-hover">
+                            <div className="p-2 sm:p-4">
+                              <p className="text-2xl">
+                                <b className="hidden sm:block">
+                                  {lastItem.name}
+                                </b>
+                                <small className="block sm:hidden">
+                                  <b>{lastItem.name}</b>
+                                </small>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </Link>
+                </div>
+              )}
+            </div>
+          </div>
+          {/* work end */}
         </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=typescript-nextjs-starter"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{` `}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
-    </div>
+      </div>
+    </>
   );
 }
