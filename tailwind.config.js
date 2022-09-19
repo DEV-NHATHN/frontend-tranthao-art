@@ -7,9 +7,6 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
-    fontFamily: {
-      sora: ["Sora"]
-    },
     extend: {
       //Height
       height: {
