@@ -88,6 +88,11 @@ a {
   z-index: 1;
 }
 
+::selection {
+  background-color: transparent !important;
+  color: turquoise !important;
+}
+
 .bg-skin-baseProfilePrimary {
   background-color: var(--color-fill-base-profile-primary);
 }
