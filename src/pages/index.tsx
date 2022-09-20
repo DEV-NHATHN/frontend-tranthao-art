@@ -68,7 +68,7 @@ export default function LandingPage() {
         description={`Public artworks profile`}
       />
       <div
-        className="min-h-screen bg-fixed bg-no-repeat bg-cover bg-top"
+        className="min-h-screen bg-fixed bg-no-repeat bg-cover bg-top lg:w-[1903px] 2xl:w-[3000px]"
         id={styles[`landing-page-background`]}
         style={{ fontSize: `20px` }}
       >
@@ -157,7 +157,7 @@ export default function LandingPage() {
           {/* work start */}
           <div className="card-container">
             <div className="p-2 sm:px-0 sm:py-4">
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 md:grid-cols-2  gap-2">
                 {links.slice(0, -1).map((link, index) => (
                   <Link key={index} href={link.src}>
                     <a target="_blank" rel="noreferrer">
