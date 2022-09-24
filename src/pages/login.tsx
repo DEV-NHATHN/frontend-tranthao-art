@@ -1,9 +1,12 @@
-import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import { Button } from '@mui/material';
-import * as yup from 'yup';
-import { useForm } from 'react-hook-form';
+import { todoAtom } from '@/atoms';
+import Listener from '@/components/Listener';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Button } from '@mui/material';
+import TextField from '@mui/material/TextField';
+import * as React from 'react';
+import { useForm } from 'react-hook-form';
+import { useRecoilState } from 'recoil';
+import * as yup from 'yup';
 
 interface ILogin {
   username: string;
@@ -32,6 +35,8 @@ const Login = () => {
     console.log('form submitted ', data);
   };
 
+  const [todo, setTodo] = useRecoilState(todoAtom);
+
   return (
     <>
       <form onSubmit={handleSubmit(customHandleSubmit)}>
@@ -56,6 +61,15 @@ const Login = () => {
           Submit
         </Button>
       </form>
+
+      <div>
+        <TextField
+          onChange={(e) => setTodo(e.target.value)}
+          label="Todo"
+          variant="standard"
+        />
+        <Listener />
+      </div>
     </>
   );
 };
