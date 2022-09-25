@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 
-import styles from '../styles/LandingPage.module.scss';
+import styles from '../styles/scss/LandingPage.module.scss';
 
 export default function LandingPage() {
   const [isDarkMode, toggleDarkMode] = useDarkMode();
