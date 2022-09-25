@@ -28,6 +28,10 @@ export default function Metatags({
       <meta name="viewport" content="width = device-width, initial-scale = 1" />
 
       <link rel="shortcut icon" href="/corgi.png" />
+      {/* <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css"
+      /> */}
     </Head>
   );
 }

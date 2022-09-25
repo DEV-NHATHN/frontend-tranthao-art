@@ -7,6 +7,7 @@ import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import * as yup from 'yup';
+import Metatags from '../components/Metatags';
 
 interface ILogin {
   username: string;
@@ -39,6 +40,7 @@ const Login = () => {
 
   return (
     <>
+      <Metatags />
       <form onSubmit={handleSubmit(customHandleSubmit)}>
         <TextField
           error={!!errors.username}
@@ -69,6 +71,7 @@ const Login = () => {
           variant="standard"
         />
         <Listener />
+        <i className="fas fa-alien"></i>
       </div>
     </>
   );
