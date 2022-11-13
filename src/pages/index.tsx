@@ -1,13 +1,16 @@
+import Loading from '@/components/common/Loading/Loading';
 import Metatags from '@/components/Metatags';
-import useDarkMode from '@/hooks/useDarkMode';
+import { PORTFOLIO_PATH } from '@/constants/path';
+// import useDarkMode from '@/hooks/useDarkMode';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import styles from '../styles/scss/LandingPage.module.scss';
 
 export default function LandingPage() {
-  const [isDarkMode, toggleDarkMode] = useDarkMode();
+  // const [isDarkMode, toggleDarkMode] = useDarkMode();
+  const [isLoading, setIsLoading] = useState(false);
 
   const tags = [`3D Artist`, `Game Designer`, `Animator`];
 
@@ -55,10 +58,22 @@ export default function LandingPage() {
       timer = setTimeout(() => {
         profileScreen.classList.remove(`hidden`);
         profileScreen.classList.add(`fade-in-animation`);
-      }, 1500);
+      }, 3000);
     }
 
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+
+    return () => {
+      setIsLoading(false);
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
@@ -67,6 +82,7 @@ export default function LandingPage() {
         title={`Landing Page`}
         description={`Public artworks profile`}
       />
+      {isLoading && <Loading size="sm" />}
       <div
         className="min-h-screen bg-fixed bg-no-repeat bg-cover bg-top lg:w-[1903px] 2xl:w-[3000px]"
         id={styles[`landing-page-background`]}
@@ -154,6 +170,7 @@ export default function LandingPage() {
             </div>
           </div>
           {/* desc end */}
+
           {/* work start */}
           <div className="card-container">
             <div className="p-2 sm:px-0 sm:py-4">
@@ -226,6 +243,11 @@ export default function LandingPage() {
             </div>
           </div>
           {/* work end */}
+          <div className="portfolio">
+            <Link href={PORTFOLIO_PATH}>
+              <a className="explore-btn">Visit My Portfolio!</a>
+            </Link>
+          </div>
         </div>
       </div>
     </>
