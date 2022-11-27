@@ -264,3 +264,10 @@ a {
   font-family: var(--title-font);
   cursor: pointer;
 }
+
+/*Home*/
+html,body,#root, .app{
+  height: 100%;
+  background-color: #010026;
+  @apply text-white;
+}
