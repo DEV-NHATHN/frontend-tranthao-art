@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Ms+Madi&family=Pacifico&family=Source+Code+Pro:wght@400;500;600&display=swap');
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 @tailwind base;
 @tailwind components;
@@ -18,7 +18,7 @@
   --base-green: #233d1e;
   --dark-green: #1d3319;
   --page-background: #f1f7f0;
-  --title-font: "Amatic SC", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+  --title-font: 'Amatic SC', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
@@ -27,22 +27,22 @@
   font-style: normal;
   font-weight: normal;
   src: local('Menlo Regular'), url('Menlo-Regular.woff') format('woff');
-  }
+}
 
-  @font-face {
-    font-family: 'Monaco';
-    font-style: normal;
-    font-weight: normal;
-    src: local('Monaco'), url('Monaco.woff') format('woff');
-    }
+@font-face {
+  font-family: 'Monaco';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Monaco'), url('Monaco.woff') format('woff');
+}
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Monaco, Dancing Script,Menlo, Source Code Pro, Ms Madi, Pacifico, -apple-system,
-    BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, Fira Sans,
-    Droid Sans, Helvetica Neue, sans-serif !important;
+  font-family: Monaco, Dancing Script, Menlo, Source Code Pro, Ms Madi, Pacifico,
+    -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell,
+    Fira Sans, Droid Sans, Helvetica Neue, sans-serif !important;
 }
 
 html {
@@ -51,10 +51,9 @@ html {
   overflow-x: hidden;
 }
 
-.font-OpenSans{
-  font-family:  Ms Madi, Pacifico, -apple-system,
-    BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, Fira Sans,
-    Droid Sans, Helvetica Neue, sans-serif;
+.font-OpenSans {
+  font-family: Ms Madi, Pacifico, -apple-system, BlinkMacSystemFont, Segoe UI,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -65,9 +64,6 @@ a {
 * {
   box-sizing: border-box;
 }
-
-
-
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
@@ -84,7 +80,6 @@ a {
   border: 6px solid transparent;
   background-clip: content-box;
 }
-
 
 /*404 Page*/
 .notfound-container {
@@ -112,11 +107,11 @@ a {
   color: var(--color-text-base-profile-primary);
 }
 
-.bg-skin-baseProfileSecondary{
+.bg-skin-baseProfileSecondary {
   background-color: #333333;
 }
 .text-skin-baseProfileSecondary {
-  color: rgb(255, 255, 255)
+  color: rgb(255, 255, 255);
 }
 
 .aspect-h-1 {
@@ -132,15 +127,18 @@ a {
 .aspect-w-4 {
   position: relative;
   padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%);
-  --tw-aspect-h: 800px
+  --tw-aspect-h: 800px;
   --tw-aspect-w: 4;
 }
 
+.last-item > span {
+  position: initial !important;
+}
 .fade-in-animation {
   animation: fadeIn 2s;
 }
 
-.hidden{
+.hidden {
   display: none;
 }
 
@@ -153,17 +151,90 @@ a {
   }
 }
 
+.glow-on-hover {
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.glow-on-hover:before {
+  content: '';
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover:active {
+  color: whitesmoke;
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
 
 @layer components {
   .card-container {
     @apply max-w-[800px] mx-auto;
   }
 
-  .txt-hover{
-    @apply hover:text-green-var transition-colors duration-300
+  .txt-hover {
+    @apply hover:text-green-var transition-colors duration-300;
   }
 }
-
 
 /*Page Transition*/
 .portfolio {
@@ -266,7 +337,10 @@ a {
 }
 
 /*Home*/
-html,body,#root, .app{
+html,
+body,
+#root,
+.app {
   height: 100%;
   background-color: #010026;
   @apply text-white;

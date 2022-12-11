@@ -1,4 +1,5 @@
 import Loading from '@/components/common/Loading/Loading';
+import OptimizedImage from '@/components/common/OptimizedImage';
 import Metatags from '@/components/Metatags';
 import { PORTFOLIO_PATH } from '@/constants/path';
 // import useDarkMode from '@/hooks/useDarkMode';
@@ -7,6 +8,8 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 import styles from '../styles/scss/LandingPage.module.scss';
+
+import Button from '@/components/common/Button/Button';
 
 export default function LandingPage() {
   // const [isDarkMode, toggleDarkMode] = useDarkMode();
@@ -21,26 +24,31 @@ export default function LandingPage() {
       name: `Instagram`,
       background_image: `https://res.cloudinary.com/dcjxcptdt/image/upload/v1663592612/tranthao/ffaf7sptlur1cryxia0r.png`,
       src: `https://www.instagram.com/${name}.art/`,
+      blurhash: 'LcL5OtNesVV]~mR*R+oyIGV[Rjof',
     },
     {
       name: `Twitter`,
       background_image: `https://res.cloudinary.com/dcjxcptdt/image/upload/v1663592655/tranthao/m7unmioe0gdfu8cz36vj.png`,
       src: `https://twitter.com/${name}art`,
+      blurhash: 'LNRBkRaf~otR~Bof9HV@J-kBxbWY',
     },
     {
       name: `Dribble`,
       background_image: `https://res.cloudinary.com/dcjxcptdt/image/upload/v1663592701/tranthao/lto7j5jn3baiu2dfspgz.jpg`,
       src: `https://dribbble.com/${name}`,
+      blurhash: 'LLE}yMoxxzo$WKj]M]WBawjbofbE',
     },
     {
       name: `Behance`,
       background_image: `https://res.cloudinary.com/dcjxcptdt/image/upload/v1663592740/tranthao/wn5ntmpoyvnabzajclxi.png`,
       src: `https://www.behance.net/${name}art`,
+      blurhash: 'L4C6jN4|0Gox00xctPos0Ix[=qV$',
     },
     {
       name: `Foundation`,
       background_image: `https://res.cloudinary.com/dcjxcptdt/image/upload/v1663592774/tranthao/mtw8r2umtwlzhw3siuck.png`,
       src: `https://foundation.app/@${name}`,
+      blurhash: 'LJGmfet7G^XSJCt6a1juKPWXvzjF',
     },
   ];
 
@@ -159,7 +167,8 @@ export default function LandingPage() {
                     {tags.map((tag, index) => (
                       <div
                         key={index}
-                        className="px-4 h-[40px] rounded-full flex items-center bg-skin-baseProfileSecondary text-skin-baseProfileSecondary hover:scale-105 transition-all ease-in-out duration-500 cursor-pointer"
+                        className="px-4 h-[40px] rounded-full flex items-center bg-skin-baseProfileSecondary text-skin-baseProfileSecondary cursor-pointer glow-on-hover
+                        "
                       >
                         <span className="text-md sm:text-2lg">{tag}</span>
                       </div>
@@ -189,6 +198,7 @@ export default function LandingPage() {
                             alt="background cover"
                             layout="fill"
                           />
+                          {/* <OptimizedImage key={link.name} image={link} /> */}
                           <div className="flex w-full items-end absolute txt-hover">
                             <div className="p-2 sm:p-4">
                               <p className="text-2xl">
@@ -214,9 +224,9 @@ export default function LandingPage() {
                         className="grid row-span-1 col-span-4 transform transition duration-300 hover:scale-[102%] hover:animate-none cursor-pointer overflow-hidden rounded-xl animate-none txt-hover"
                         style={{ backgroundColor: `rgb(255, 255, 255)` }}
                       >
-                        <div className="aspect-w-4 aspect-h-1 relative pt-2">
+                        <div className="aspect-w-4 aspect-h-1 last-item">
                           <Image
-                            className="object-cover"
+                            // className="object-cover"
                             src={lastItem.background_image}
                             alt="background cover"
                             width={800}
@@ -248,6 +258,7 @@ export default function LandingPage() {
               <a className="explore-btn">Visit My Portfolio!</a>
             </Link>
           </div>
+          <Button text="Visit My Portfolio!" />
         </div>
       </div>
     </>
