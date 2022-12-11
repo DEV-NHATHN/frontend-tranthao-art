@@ -1,6 +1,7 @@
 import DefaultLayout from '@/components/layout/DefaultLayout';
 import { theme } from '@/config/types/theme';
 import '@/styles/globals.css';
+import '@/styles/scss/index.scss';
 import { ThemeProvider } from '@emotion/react';
 import { CssBaseline } from '@mui/material';
 import { AnimatePresence, motion } from 'framer-motion';
