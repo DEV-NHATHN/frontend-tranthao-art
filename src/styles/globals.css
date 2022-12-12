@@ -83,6 +83,7 @@ a {
 
 /*404 Page*/
 .notfound-container {
+  width: 100vw;
   height: 100vh;
   position: relative;
 }
@@ -301,7 +302,6 @@ a {
 }
 
 .header-content {
-  padding: 18px;
   text-align: center;
   position: relative;
   z-index: 1;

@@ -6,9 +6,7 @@ import { PORTFOLIO_PATH } from '@/constants/path';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-
 import styles from '../styles/scss/LandingPage.module.scss';
-
 import Button from '@/components/common/Button/Button';
 
 export default function LandingPage() {
@@ -257,6 +255,9 @@ export default function LandingPage() {
             <Link href={PORTFOLIO_PATH}>
               <a className="explore-btn">Visit My Portfolio!</a>
             </Link>
+          </div>
+          <div className="flex justify-center items-center">
+            <Button text="Click Me" />
           </div>
         </div>
       </div>
