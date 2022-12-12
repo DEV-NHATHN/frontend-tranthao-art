@@ -258,7 +258,9 @@ export default function LandingPage() {
               <a className="explore-btn">Visit My Portfolio!</a>
             </Link>
           </div>
-          <Button text="Visit My Portfolio!" />
+          <div className="flex justify-center items-center">
+            <Button text="Click Me" />
+          </div>
         </div>
       </div>
     </>
